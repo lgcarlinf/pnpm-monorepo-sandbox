@@ -1,12 +1,12 @@
 name: Deploy to Production
 
 on:
-    workflow_dispatch:
-        inputs:
-            branch:
-                description: 'Branch to deploy'
-                required: true
-                default: 'main'
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to deploy'
+        required: true
+        default: 'main'
 
 jobs:
   build-and-deploy:
@@ -18,47 +18,46 @@ jobs:
       contents: read
       pages: write
       id-token: write
-    
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-      
+      with:
+        ref: ${{ github.event.inputs.branch }}
+
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
         node-version: '22'
-        
+
     - name: Setup pnpm
       uses: pnpm/action-setup@v4
       with:
-        version: 10.4.1
-        
+        version: '10.4.1' 
+
     - name: Install dependencies
       run: pnpm install --frozen-lockfile
-      
-    - name: Build applications
+
+    - name: Build application
+
       run: pnpm run build
-      
-    - name: Upload build artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: dist-files
-        path: dist/
-        retention-days: 7
-        
+      env:
+        NEXT_PUBLIC_BASE_PATH: ${{ vars.NEXT_PUBLIC_BASE_PATH }}
+
     - name: Setup Pages
       uses: actions/configure-pages@v4
-      
+
     - name: Upload to GitHub Pages
+      # ✅ ÚNICO PASO DE SUBIDA: Usa el artifact optimizado para Pages
       uses: actions/upload-pages-artifact@v3
       with:
         path: ./dist
-        
+
     - name: Deploy to GitHub Pages
       id: deployment
-      if: github.ref == 'refs/heads/main'
+      # ✅ ELIMINADO: La condición 'if' se ha quitado para desplegar la rama seleccionada
       uses: actions/deploy-pages@v4
-      
+
     - name: Display deployment URL
-      if: github.ref == 'refs/heads/main'
+      # ✅ ELIMINADO: La condición 'if' también se quita aquí
       run: echo "🚀 Deployment successful! URL:" "${{ steps.deployment.outputs.page_url }}"
