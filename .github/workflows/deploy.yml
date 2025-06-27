@@ -11,6 +11,9 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     permissions:
       contents: read
       pages: write
@@ -52,5 +55,10 @@ jobs:
         path: ./dist
         
     - name: Deploy to GitHub Pages
+      id: deployment
       if: github.ref == 'refs/heads/main'
       uses: actions/deploy-pages@v4
+      
+    - name: Display deployment URL
+      if: github.ref == 'refs/heads/main'
+      run: echo "🚀 Deployment successful! URL:" "${{ steps.deployment.outputs.page_url }}"
