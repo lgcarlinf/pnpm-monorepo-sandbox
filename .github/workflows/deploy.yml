@@ -3,10 +3,10 @@ name: Deploy to Production
 on:
     workflow_dispatch:
         inputs:
-            environment:
-                description: 'Deployment environment'
+            branch:
+                description: 'Branch to deploy'
                 required: true
-                default: 'production'
+                default: 'main'
 
 jobs:
   build-and-deploy:
