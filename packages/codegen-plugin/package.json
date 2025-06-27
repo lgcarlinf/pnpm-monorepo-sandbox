@@ -1,0 +1,26 @@
+{
+    "name": "codegen-plugin",
+    "version": "1.0.0",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "exports": {
+        ".": {
+            "import": "./dist/index.js",
+            "require": "./dist/index.js"
+        }
+    },
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "tsc"
+    },
+    "dependencies": {
+        "chokidar": "^3.5.3"
+    },
+    "devDependencies": {
+        "@types/node": "^20",
+        "chokidar": "^3.5.3",
+        "typescript": "^5.8.3"
+    }
+}
