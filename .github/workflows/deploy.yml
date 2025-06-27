@@ -32,9 +32,6 @@ jobs:
     - name: Build applications
       run: pnpm run build
       
-    - name: Prepare for deployment
-      run: pnpm run post:build
-      
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
       with:
