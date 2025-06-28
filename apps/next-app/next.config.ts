@@ -4,11 +4,6 @@ const nextConfig: NextConfig = {
   output: "export",
   distDir: "dist",
   basePath: process.env.NEXT_PUBLIC_BASE_PATH || "",
-  images: {
-    unoptimized: true,
-    loader: "custom",
-    loaderFile:"./scripts/image-loader.js"
-  },
 };
 
 export default nextConfig;

@@ -1,3 +1,5 @@
+"use client"
+import myImageLoader from "@/utils";
 import Image from "next/image";
 
 export default function Home() {
@@ -9,6 +11,7 @@ export default function Home() {
           className="dark:invert"
           src="/next.svg"
           alt="Next.js logo"
+          loader={myImageLoader}
           width={180}
           height={38}
           priority
@@ -37,6 +40,7 @@ export default function Home() {
               className="dark:invert"
               src="/vercel.svg"
               alt="Vercel logomark"
+              loader={myImageLoader}
               width={20}
               height={20}
             />
@@ -63,6 +67,7 @@ export default function Home() {
             aria-hidden
             src="/file.svg"
             alt="File icon"
+            loader={myImageLoader}
             width={16}
             height={16}
           />
@@ -78,6 +83,7 @@ export default function Home() {
             aria-hidden
             src="/window.svg"
             alt="Window icon"
+            loader={myImageLoader}
             width={16}
             height={16}
           />
@@ -93,6 +99,7 @@ export default function Home() {
             aria-hidden
             src="/globe.svg"
             alt="Globe icon"
+            loader={myImageLoader}
             width={16}
             height={16}
           />

@@ -34,7 +34,8 @@
     ".next/types/**/*.ts",
     "next-env.d.ts",
     "scripts/start-watcher.js",
-    "dist/types/**/*.ts"
+    "dist/types/**/*.ts",
+    "scripts/image-loader.js"
   ],
   "exclude": [
     "node_modules"
